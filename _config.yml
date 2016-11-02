@@ -1,15 +1,14 @@
 # Site settings
-title: 國立臺北科技大學資訊工程系 系學會 Student Association of NTUT CSIE
+title: 國立臺北科技大學資訊工程系學會 NTUT CSIE Student Association
+title_short: NTUT CSIE SA
 header-img: img/home-bg.jpg
-#email: your-email@yourdomain.com
-copyright_name: NTUT/CSIE/Student Association
+copyright_name: 國立臺北科技大學資訊工程系學會 NTUT CSIE Student Association
 description: "Student Association, Department of Computer Science and Information Engineering, National Taipei University of Technology."
 baseurl: ""
-url: "http://ntutcsie.github.io"
-#twitter_username: ntutcsie
+url: "http://csie.ntut.cc"
 github_username:  ntutcsie
 facebook_username:  ntutcsieFB
-#email_username:  your-email@yourdomain.com
+email_username:  csie.sa@ntut.edu.tw
 
 # Build settings
 markdown: kramdown
