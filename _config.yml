@@ -14,8 +14,8 @@ facebook_plugin:
     language: "zh_TW"
     name: "國立臺北科技大學資訊工程系-系學會專頁"
     username: ntutcsieFB
-    height: 450
-    width: 500
+    height: 250
+    width: 450
     tabs: "messages, timeline"
 
 # Build settings
