@@ -13,7 +13,7 @@ $(function() {
 
 $(function() {
 
-    $("#contactFrom input,#contactForm textarea").jqBootstrapValidation({
+    $("#contactForm input,#contactForm textarea").jqBootstrapValidation({
         preventSubmit: true,
         submitError: function($form, event, errors) {
             // additional error messages or events
@@ -31,37 +31,48 @@ $(function() {
                 firstName = name.split(' ').slice(0, -1).join(' ');
             }
             $.ajax({
-                url: "././mail/contact_me.php",
+                url: "https://docs.google.com/forms/d/e/1FAIpQLScKgMPZDoXU2cA_EDq8IAi4VcnHIxt9j16n0k3VWYmL1Z8tSw/formResponse",
                 type: "POST",
                 data: {
-                    name: name,
-                    phone: phone,
-                    email: email,
-                    message: message
+                    'entry.1055911491': name,
+                    'entry.661742667': phone,
+                    'entry.752240962': email,
+                    'entry.770791617': message,
+                    'fbzx': 5900816614398778987
                 },
                 cache: false,
-                success: function() {
-                    // Success message
-                    $('#success').html("<div class='alert alert-success'>");
-                    $('#success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
-                        .append("</button>");
-                    $('#success > .alert-success')
-                        .append("<strong>Your message has been sent. </strong>");
-                    $('#success > .alert-success')
-                        .append('</div>');
+                crossDomain: true,
+                complete: function(jqXHR, textStatus) {
+                    switch (jqXHR.status) {
+                        case 0:
+                        case 200:
+                            // Success message
+                            $('#success').html("<div class='alert alert-success'>");
+                            $('#success > .alert-success')
+                                .html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
+                                .append("</button>");
+                            $('#success > .alert-success')
+                                .append("<strong>訊息已送出 Your message has been sent. </strong>");
+                            $('#success > .alert-success')
+                                .append('</div>');
 
-                    //clear all fields
-                    $('#contactForm').trigger("reset");
-                },
-                error: function() {
-                    // Fail message
-                    $('#success').html("<div class='alert alert-danger'>");
-                    $('#success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
-                        .append("</button>");
-                    $('#success > .alert-danger').append("<strong>Sorry " + firstName + ", it seems that my mail server is not responding. Please try again later!");
-                    $('#success > .alert-danger').append('</div>');
-                    //clear all fields
-                    $('#contactForm').trigger("reset");
+                            //clear all fields
+                            $('#contactForm').trigger("reset");
+                            break;
+
+                        default:
+                            // Fail message
+                            $('#success').html("<div class='alert alert-danger'>");
+                            $('#success > .alert-danger')
+                                .html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
+                                .append("</button>");
+                            $('#success > .alert-danger')
+                                .append("<strong>傳送失敗，請稍後重試 Sorry " + firstName + ", it seems that sending is not responding. Please try again later!");
+                            $('#success > .alert-danger')
+                                .append('</div>');
+                            //clear all fields
+                            $('#contactForm').trigger("reset");
+                    }
                 },
             })
         },
